@@ -4,18 +4,30 @@
   </div>
 
   <div class="kf-sidebar__footer">
-    <button class="kf-btn-new-session">+ nova sessão</button>
+    <button class="kf-btn-new-session" (click)="showCreateForm()">+ nova sessão</button>
   </div>
 
   <nav class="kf-sessions-list">
-    <div class="kf-session-item">
-      <span class="kf-session-item__name">Estudos</span>
-      <span class="kf-session-item__meta"> 10 min · 5 ciclos </span>
-    </div>
+    @for (session of sessions(); track session.id) {
+      <div
+        class="kf-session-item"
+        [class.kf.session-item--active]="selectedSession?.id === session.id"
+        (click)="selectedSession = session"
+      >
+        <span class="kf-session-item__name">{{ session.name }}</span>
+        <span class="kf-session-item__name">{{ session.description }}</span>
+        <span class="kf-session-item__meta">
+          {{ session.focusDurationMinutes }} min · {{ session.cycles }}ciclos
+        </span>
+      </div>
+    }
 
-    <div class="kf-session-item">
-      <span class="kf-session-item__name">Estudos</span>
-      <span class="kf-session-item__meta"> 10 min · 5 ciclos </span>
-    </div>
+    @if (sessions().length === 0) {
+      <div class="kf-sessions-empty">nenhuma sessão ainda</div>
+    }
   </nav>
 </aside>
+
+@if (view === 'create') {
+  <app-new-session (create)="handleCreate($event)" (close)="view = 'empty'" />
+}

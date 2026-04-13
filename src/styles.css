@@ -11,3 +11,80 @@
 }
 
 
+
+.kf-btn {
+  padding: 9px 18px;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.12s;
+  letter-spacing: 0.02em;
+}
+
+.kf-btn--primary {
+  background: #1D9E75;
+  color: #fff;
+  border-color: #1D9E75;
+}
+
+.kf-btn--primary:hover { background: #178a64; border-color: #178a64; }
+
+.kf-btn--ghost {
+  background: transparent;
+  color: #888580;
+  border-color: #d8d3cc;
+}
+
+.kf-btn--ghost:hover { background: #f0ede7; color: #1a1a18; }
+
+.kf-btn--add {
+  padding: 7px 14px;
+  background: #1D9E75;
+  color: white;
+  border-color: #1D9E75;
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.kf-btn--add:hover { background: #178a64; }
+
+.kf-btn--start {
+  width: 100%;
+  padding: 12px;
+  background: #1a1a18;
+  color: #e8e4dc;
+  border-color: #1a1a18;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.kf-btn--start:hover { background: #2c2c2a; }
+
+.kf-btn--pause {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  color: #1a1a18;
+  border-color: #c8c3bb;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.kf-btn--pause:hover { background: #f0ede7; }
+
+.kf-btn--stop {
+  width: 100%;
+  padding: 8px;
+  background: transparent;
+  color: #b0aba4;
+  border-color: transparent;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.kf-btn--stop:hover { color: #c0392b; border-color: #f0b3ae; background: #fdf1f0; }
+
