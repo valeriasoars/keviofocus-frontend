@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:host {
+  display: block;
+  height: 100vh;
+  background: #f5f3ee;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+
