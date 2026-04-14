@@ -4,6 +4,14 @@
   background: #f0ede7;
   border-right: 1px solid #e2ddd6;
   overflow: hidden;
+flex: 1;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
 }
 
 .kf-sidebar__header {

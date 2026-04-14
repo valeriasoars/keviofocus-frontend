@@ -11,7 +11,13 @@
 }
 
 <div class="kf-content">
-  @if (view === 'session' && selectedSession) {
-    <app-tasks [session]="selectedSession" />
-  }
+  <aside class="kf-timer-panel">
+    <app-timer />
+  </aside>
+
+  <section class="kf-tasks-panel">
+    @if (view === 'session' && selectedSession) {
+      <app-tasks [session]="selectedSession" />
+    }
+  </section>
 </div>

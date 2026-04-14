@@ -3,10 +3,11 @@ import { SessionModel } from '../../models/sessionModel';
 import { SessionRunModel } from '../../models/sessionRunModel';
 import { Tasks } from "./tasks/tasks";
 import { KevioService } from '../../services/kevio-service';
+import { Timer } from "./timer/timer";
 
 @Component({
   selector: 'app-session-view',
-  imports: [Tasks],
+  imports: [Tasks, Timer],
   templateUrl: './session-view.html',
   styleUrl: './session-view.css',
 })
