@@ -11,8 +11,8 @@
     @for (session of sessions(); track session.id) {
       <div
         class="kf-session-item"
-        [class.kf.session-item--active]="selectedSession?.id === session.id"
-        (click)="selectedSession = session"
+        [class.kf.session-item--active]="selectedSessionId === session.id"
+        (click)="selectSession(session)"
       >
         <span class="kf-session-item__name">{{ session.name }}</span>
         <span class="kf-session-item__name">{{ session.description }}</span>
@@ -28,6 +28,6 @@
   </nav>
 </aside>
 
-@if (view === 'create') {
-  <app-new-session (create)="handleCreate($event)" (close)="view = 'empty'" />
+@if (view() === 'create') {
+  <app-new-session (create)="handleCreate($event)" (close)="setView('empty')" />
 }

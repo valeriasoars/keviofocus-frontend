@@ -1,14 +1,9 @@
 import { TaskModel } from "./taskModel";
 
-export interface SessionModel {
-  id: string;
-  name: string;
+export interface CreateSessionModel {
+ name: string;
   description?: string;
   focusDurationMinutes: number;
   breakDurationMinutes: number;
   cycles: number;
-  color?: string;
-  icon?: string;
-  createdAt?: string;
-  tasks: TaskModel[];
 }

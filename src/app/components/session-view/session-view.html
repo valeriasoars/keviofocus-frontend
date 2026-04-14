@@ -1,0 +1,17 @@
+@if (view === 'session' && selectedSession) {
+  <header class="kf-session-header">
+    <div class="kf-session-header__left">
+      <h1 class="kf-session-header__title">{{ selectedSession.name }}</h1>
+    </div>
+    <span class="kf-session-header__meta">
+      {{ selectedSession.focusDurationMinutes }}min foco ·
+      {{ selectedSession.breakDurationMinutes }}min pausa
+    </span>
+  </header>
+}
+
+<div class="kf-content">
+  @if (view === 'session' && selectedSession) {
+    <app-tasks [session]="selectedSession" />
+  }
+</div>

@@ -3,6 +3,7 @@ import { KevioService } from '../../services/kevio-service';
 import { FormsModule } from '@angular/forms';
 import { NewSession } from '../new-session/new-session';
 import { SessionModel } from '../../models/sessionModel';
+import { CreateSessionModel } from '../../models/createSessionModel';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,41 +12,56 @@ import { SessionModel } from '../../models/sessionModel';
   styleUrl: './sidebar.css',
 })
 export class Sidebar {
-  selectedSession: SessionModel  | null = null;
-  view: 'empty' | 'session' | 'create' = 'empty';
+  private toastTimer: any
+  toast = signal('')
 
-  private toastTimer: any;
-  toast = signal<string>('');
+  get sessions() {
+    return this.service.sessions
+  }
+  get view() {
+    return this.service.view
+  }
+
+  setView(v: 'empty' | 'session' | 'create') {
+  this.service.view.set(v);
+}
+
+  get selectedSessionId() { return this.service.selectedSession()?.id; }
 
   constructor(private service: KevioService) {}
 
-  sessions: any;
   ngOnInit() {
-    this.sessions = this.service.sessions;
-    this.loadSessions();
+    this.loadSessions()
   }
 
   loadSessions() {
     this.service.getSessions().subscribe((data) => {
-      this.service.sessions.set(data);
-    });
+      this.service.sessions.set(data)
+    })
   }
 
-  handleCreate(session: any) {
+  selectSession(session: SessionModel) {
+    this.service.getSessionById(session.id).subscribe((full) => {
+      this.service.selectedSession.set(full)
+      this.service.view.set('session')
+    })
+  }
+
+  handleCreate(session: CreateSessionModel) {
     this.service.createSession(session).subscribe((newSession) => {
-      this.service.sessions.update((old) => [...old, newSession]);
-      this.view = 'empty';
-    });
+      this.service.sessions.update((old) => [...old, { ...newSession, tasks: [] }])
+      this.service.view.set('empty')
+    })
   }
 
   showCreateForm() {
-    this.view = 'create';
-    this.selectedSession = null;
+    this.service.view.set('create')
+    this.service.selectedSession.set(null)
   }
 
   showToast(msg: string) {
-    this.toast.set(msg);
-    clearTimeout(this.toastTimer);
-    this.toastTimer = setTimeout(() => this.toast.set(''), 2800);
+    this.toast.set(msg)
+    clearTimeout(this.toastTimer)
+    this.toastTimer = setTimeout(() => this.toast.set(''), 2800)
   }
 }

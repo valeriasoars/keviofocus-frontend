@@ -1,0 +1,35 @@
+.kf-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  height: 100vh;
+  overflow: hidden;
+  background: #faf9f6;
+}
+
+.kf-main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #faf9f6;
+}
+
+/* Empty state */
+.kf-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #b0aba4;
+}
+
+.kf-empty__icon {
+  font-size: 36px;
+  opacity: 0.35;
+  line-height: 1;
+}
+
+.kf-empty__text {
+  font-size: 14px;
+}

@@ -1,0 +1,37 @@
+<section class="kf-tasks-panel">
+  <div class="kf-panel-header">
+    <span class="kf-panel-label">tarefas</span>
+    <span class="kf-task-count">{{ completedTasks }}/{{ totalTasks }}</span>
+  </div>
+
+  <div class="kf-task-list">
+    @for (t of session.tasks; track t.id) {
+      <div class="kf-task" [class.kf-task--done]="t.completed">
+        <button
+          class="kf-task__check"
+          [class.kf-task__check--done]="t.completed"
+          (click)="t.id && completeTask(t.id)"
+          [attr.aria-label]="t.completed ? 'Desmarcar tarefa' : 'Marcar como concluída'"
+        ></button>
+        <span class="kf-task__title">{{ t.title }}</span>
+        <button class="kf-task__del" (click)=" t.id && deleteTask(t.id)" aria-label="Remover tarefa">
+          ✕
+        </button>
+      </div>
+    }
+
+    @if (session.tasks?.length === 0) {
+      <p class="kf-tasks-empty">Nenhuma tarefa. Adicione uma abaixo.</p>
+    }
+  </div>
+
+  <div class="kf-add-task">
+    <input
+      class="kf-input kf-input--task"
+      [(ngModel)]="newTaskTitle"
+      placeholder="Adicionar tarefa…"
+      (keydown)="onTaskKeydown($event)"
+    />
+    <button class="kf-btn kf-btn--add" (click)="addTask()">+</button>
+  </div>
+</section>

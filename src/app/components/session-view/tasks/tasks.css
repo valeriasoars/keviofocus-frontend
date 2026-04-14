@@ -1,0 +1,126 @@
+.kf-tasks-panel {
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+   order: 1;
+}
+
+.kf-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.kf-panel-label {
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #b0aba4;
+}
+
+.kf-task-count {
+  font-size: 10px;
+  color: #b0aba4;
+  font-family: 'DM Mono', monospace;
+}
+
+.kf-task-list {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.kf-task-list::-webkit-scrollbar { width: 3px; }
+.kf-task-list::-webkit-scrollbar-thumb { background: #d8d3cc; border-radius: 4px; }
+
+.kf-task {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 0;
+  border-bottom: 1px solid #f0ede7;
+  transition: opacity 0.15s;
+}
+
+.kf-task--done { opacity: 0.55; }
+
+.kf-task__check {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1.5px solid #c8c3bb;
+  flex-shrink: 0;
+  cursor: pointer;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.kf-task__check:hover { border-color: #1D9E75; }
+
+.kf-task__check--done {
+  background: #1D9E75;
+  border-color: #1D9E75;
+}
+
+.kf-task__check--done::after {
+  content: '';
+  width: 6px;
+  height: 3px;
+  border-left: 1.5px solid white;
+  border-bottom: 1.5px solid white;
+  transform: rotate(-45deg) translateY(-1px);
+  display: block;
+}
+
+.kf-task__title {
+  font-size: 11px;
+  color: #1a1a18;
+  flex: 1;
+  transition: all 0.15s;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kf-task--done .kf-task__title {
+  text-decoration: line-through;
+  color: #b0aba4;
+}
+
+.kf-task__del {
+  opacity: 0;
+  font-size: 9px;
+  color: #b0aba4;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 2px 4px;
+  transition: opacity 0.12s, color 0.12s;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.kf-task:hover .kf-task__del { opacity: 1; }
+.kf-task__del:hover { color: #c0392b; }
+
+.kf-tasks-empty {
+  font-size: 11px;
+  color: #c8c3bb;
+  padding: 16px 0;
+  text-align: center;
+}
+
+.kf-add-task {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
