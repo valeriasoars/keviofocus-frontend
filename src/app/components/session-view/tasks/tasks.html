@@ -3,6 +3,16 @@
     <span class="kf-panel-label">tarefas</span>
     <span class="kf-task-count">{{ completedTasks }}/{{ totalTasks }}</span>
   </div>
+  
+  <div class="kf-add-task">
+    <input
+      class="kf-input kf-input--task"
+      [(ngModel)]="newTaskTitle"
+      placeholder="Adicionar tarefa…"
+      (keydown)="onTaskKeydown($event)"
+    />
+    <button class="kf-btn kf-btn--add" (click)="addTask()">+</button>
+  </div>
 
   <div class="kf-task-list">
     @for (t of session.tasks; track t.id) {
@@ -25,13 +35,4 @@
     }
   </div>
 
-  <div class="kf-add-task">
-    <input
-      class="kf-input kf-input--task"
-      [(ngModel)]="newTaskTitle"
-      placeholder="Adicionar tarefa…"
-      (keydown)="onTaskKeydown($event)"
-    />
-    <button class="kf-btn kf-btn--add" (click)="addTask()">+</button>
-  </div>
 </section>

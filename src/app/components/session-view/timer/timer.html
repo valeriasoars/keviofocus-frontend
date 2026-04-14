@@ -28,7 +28,7 @@
 <div class="kf-timer-controls">
   @if (!timerRunning()) {
     <button class="kf-btn kf-btn--start" (click)="startTimer()">
-      {{ currentRunId ? 'RETOMAR' : 'INICIAR' }}
+      {{ hasActiveRun  ? 'RETOMAR' : 'INICIAR' }}
     </button>
   } @else {
     <button class="kf-btn kf-btn--pause" (click)="pauseTimer()">PAUSAR</button>

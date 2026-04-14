@@ -17,7 +17,6 @@ export class Timer implements OnInit, OnDestroy, OnChanges {
   isBreak = signal<boolean>(false);
   toast = signal<string>('');
 
-  currentRunId: string | null = null;
   private intervalId: any;
   private toastTimer: any;
 
@@ -28,22 +27,25 @@ export class Timer implements OnInit, OnDestroy, OnChanges {
   }
 
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['session'] && !changes['session'].firstChange) {
-      clearInterval(this.intervalId);
-      this.timerRunning.set(false);
-      this.currentRunId = null;
-      this.currentCycle.set(1);
-      this.isBreak.set(false);
-      this.timeLeft.set(this.session.focusDurationMinutes * 60);
-    }
+ngOnChanges(changes: SimpleChanges) {
+  if (changes['session'] && !changes['session'].firstChange) {
+    clearInterval(this.intervalId);
+    this.timerRunning.set(false);
+    this.service.currentRunId.set(null); 
+    this.currentCycle.set(1);
+    this.isBreak.set(false);
+    this.timeLeft.set(this.session.focusDurationMinutes * 60);
   }
+}
 
   ngOnDestroy() {
     clearInterval(this.intervalId);
     clearTimeout(this.toastTimer);
   }
 
+  get hasActiveRun(): boolean {
+  return this.service.currentRunId() !== null;
+}
 
   get displayTime(): string {
     const m = Math.floor(this.timeLeft() / 60)
@@ -81,15 +83,15 @@ export class Timer implements OnInit, OnDestroy, OnChanges {
   }
 
   startTimer() {
-    if (this.timerRunning()) return;
+if (this.timerRunning()) return;
 
-    if (!this.currentRunId) {
-      this.service.startRun({ sessionId: this.session.id }).subscribe((run: any) => {
-        this.currentRunId = run.id;
-      });
-      this.currentCycle.set(1);
-      this.isBreak.set(false);
-    }
+  if (!this.service.currentRunId()) { 
+    this.service.startRun({ sessionId: this.session.id }).subscribe((run: any) => {
+      this.service.currentRunId.set(run.id);
+    });
+    this.currentCycle.set(1);
+    this.isBreak.set(false);
+  }
 
     if (this.timeLeft() === 0) {
       const mins = this.isBreak()
@@ -125,15 +127,16 @@ export class Timer implements OnInit, OnDestroy, OnChanges {
     this.timerRunning.set(false);
   }
 
-  private finishRun() {
-    if (this.currentRunId) {
-      this.service.finishRun(this.currentRunId).subscribe();
-      this.currentRunId = null;
-    }
-    this.timeLeft.set(this.session.focusDurationMinutes * 60);
-    this.currentCycle.set(1);
-    this.isBreak.set(false);
+private finishRun() {
+  const runId = this.service.currentRunId();
+  if (runId) {
+    this.service.finishRun(runId).subscribe(); 
+    this.service.currentRunId.set(null);
   }
+  this.timeLeft.set(this.session.focusDurationMinutes * 60);
+  this.currentCycle.set(1);
+  this.isBreak.set(false);
+}
 
   private nextStep() {
     if (!this.isBreak()) {

@@ -12,6 +12,7 @@ import { SessionModel } from '../../../models/sessionModel';
 })
 export class Tasks {
   @Input() session!: SessionModel;
+  @Input() currentRunId: string | null = null;
 
   newTaskTitle = '';
 
@@ -33,12 +34,22 @@ export class Tasks {
     });
   }
 
-  completeTask(taskId: string) {
+completeTask(taskId: string) {
+  const runId = this.service.currentRunId();
+
+  if (!runId) {
     this.service.toggleTask(taskId).subscribe((updated: TaskModel) => {
       const task = this.session.tasks.find((t: TaskModel) => t.id === taskId);
       if (task) task.completed = updated.completed;
     });
+    return;
   }
+
+  this.service.completeTask(taskId, runId).subscribe(() => {
+    const task = this.session.tasks.find((t: TaskModel) => t.id === taskId);
+    if (task) task.completed = true;
+  });
+}
 
   deleteTask(taskId: string) {
     this.service.deleteTask(taskId).subscribe(() => {

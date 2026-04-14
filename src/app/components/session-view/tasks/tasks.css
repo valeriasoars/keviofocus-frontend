@@ -123,4 +123,37 @@
   display: flex;
   gap: 6px;
   flex-shrink: 0;
+  margin-bottom: 20px;
+}
+
+.kf-input {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1a1a18;
+  background: #fff;
+  border: 1px solid #d8d3cc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.12s, box-shadow 0.12s;
+  appearance: none;
+}
+
+.kf-input:focus {
+  border-color: #1D9E75;
+  box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.12);
+}
+
+.kf-input--task {
+  font-size: 13px;
+  padding: 7px 10px;
+  
+}
+
+.kf-create-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  justify-content: flex-end;
 }

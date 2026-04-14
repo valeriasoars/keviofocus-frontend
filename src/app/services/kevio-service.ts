@@ -13,6 +13,7 @@ export class KevioService {
   private apiUrl = 'https://localhost:7157/api';
 
   sessions = signal<SessionModel[]>([]);
+  currentRunId = signal<string | null>(null);
   selectedSession = signal<SessionModel | null>(null);
   view = signal<'empty' | 'session' | 'create'>('empty');
 

@@ -1,28 +1,35 @@
-.kf-create-form {
-  max-width: 480px;
-  margin: auto;
-  padding: 40px 32px;
+:host {
+  display: contents;
+}
+
+.kf-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 24, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: kf-fade-in 0.15s ease;
+}
+
+.kf-modal {
+  background: #faf9f6;
+  border-radius: 14px;
+  padding: 32px;
   width: 100%;
+  max-width: 460px;
+  border: 1px solid #e2ddd6;
+  animation: kf-slide-up 0.18s ease;
 }
 
 .kf-create-form__title {
   font-family: 'Fraunces', serif;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 300;
   color: #1a1a18;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   letter-spacing: -0.4px;
-}
-
-.kf-field {
-  margin-bottom: 16px;
-}
-
-.kf-field-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 16px;
 }
 
 .kf-label {
@@ -33,6 +40,15 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: 6px;
+}
+
+.kf-field { margin-bottom: 14px; }
+
+.kf-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 
 .kf-input {
@@ -54,14 +70,47 @@
   box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.12);
 }
 
-.kf-input--task {
-  font-size: 13px;
-  padding: 7px 10px;
-}
-
 .kf-create-actions {
   display: flex;
   gap: 10px;
   margin-top: 24px;
   justify-content: flex-end;
+}
+
+.kf-btn {
+  padding: 9px 18px;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.12s;
+  letter-spacing: 0.02em;
+}
+
+.kf-btn--primary {
+  background: #1D9E75;
+  color: #fff;
+  border-color: #1D9E75;
+}
+
+.kf-btn--primary:hover { background: #178a64; border-color: #178a64; }
+
+.kf-btn--ghost {
+  background: transparent;
+  color: #888580;
+  border-color: #d8d3cc;
+}
+
+.kf-btn--ghost:hover { background: #f0ede7; color: #1a1a18; }
+
+@keyframes kf-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes kf-slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

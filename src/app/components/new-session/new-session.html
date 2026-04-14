@@ -1,40 +1,49 @@
-<div class="kf-create-form">
-  <h2 class="kf-create-form__title">Nova sessão</h2>
+<div class="kf-modal-overlay" (click)="close.emit()">
+  <div class="kf-modal" (click)="$event.stopPropagation()">
+    <h2 class="kf-create-form__title">Nova sessão</h2>
 
-  <div class="kf-field">
-    <label class="kf-label">Nome da sessão</label>
-    <input
-      class="kf-input"
-      [(ngModel)]="newSession.name"
-      placeholder="Ex: Deep Work, Estudo, Leitura…"
-    />
-  </div>
-
-  <div class="kf-field">
-    <label class="kf-label">Descrição da sessão</label>
-    <input
-      class="kf-input"
-      [(ngModel)]="newSession.description"
-    />
-  </div>
-
-  <div class="kf-field-row">
     <div class="kf-field">
-      <label class="kf-label">Foco (min)</label>
-      <input class="kf-input" type="number" [(ngModel)]="newSession.focusDurationMinutes" min="1" />
+      <label class="kf-label">Nome da sessão</label>
+      <input
+        class="kf-input"
+        [(ngModel)]="newSession.name"
+        placeholder="Ex: Deep Work, Estudo, Leitura…"
+      />
     </div>
-    <div class="kf-field">
-      <label class="kf-label">Pausa (min)</label>
-      <input class="kf-input" type="number" [(ngModel)]="newSession.breakDurationMinutes" min="1" />
-    </div>
-    <div class="kf-field">
-      <label class="kf-label">Ciclos</label>
-      <input class="kf-input" type="number" [(ngModel)]="newSession.cycles" min="1" />
-    </div>
-  </div>
 
-  <div class="kf-create-actions">
-    <button class="kf-btn kf-btn--ghost" (click)="close.emit()">Cancelar</button>
-    <button class="kf-btn kf-btn--primary" (click)="createSession()">Criar sessão</button>
+    <div class="kf-field">
+      <label class="kf-label">Descrição da sessão</label>
+      <input class="kf-input" [(ngModel)]="newSession.description" />
+    </div>
+
+    <div class="kf-field-row">
+      <div class="kf-field">
+        <label class="kf-label">Foco (min)</label>
+        <input
+          class="kf-input"
+          type="number"
+          [(ngModel)]="newSession.focusDurationMinutes"
+          min="1"
+        />
+      </div>
+      <div class="kf-field">
+        <label class="kf-label">Pausa (min)</label>
+        <input
+          class="kf-input"
+          type="number"
+          [(ngModel)]="newSession.breakDurationMinutes"
+          min="1"
+        />
+      </div>
+      <div class="kf-field">
+        <label class="kf-label">Ciclos</label>
+        <input class="kf-input" type="number" [(ngModel)]="newSession.cycles" min="1" />
+      </div>
+    </div>
+
+    <div class="kf-create-actions">
+      <button class="kf-btn kf-btn--ghost" (click)="close.emit()">Cancelar</button>
+      <button class="kf-btn kf-btn--primary" (click)="createSession()">Criar sessão</button>
+    </div>
   </div>
 </div>
