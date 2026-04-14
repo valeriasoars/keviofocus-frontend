@@ -15,7 +15,6 @@ export class SessionView {
 
   constructor(private service: KevioService){}
  
-
   get selectedSession() { return this.service.selectedSession(); }
   get view() { return this.service.view(); }
 }
