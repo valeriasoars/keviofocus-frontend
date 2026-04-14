@@ -1,0 +1,174 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 0;
+}
+
+.kf-phase {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  padding: 6px 18px;
+  border-radius: 100px;
+  margin-bottom: 18px;
+  background: #1a1a18;
+  color: #e8e4dc;
+  transition: background 0.3s, color 0.3s;
+}
+
+.kf-phase--break {
+  background: #0F6E56;
+  color: #9FE1CB;
+}
+
+.kf-cycle-dots {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.kf-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e2ddd6;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.kf-dot--done { background: #1D9E75; }
+
+.kf-dot--active {
+  background: #5DCAA5;
+  transform: scale(1.35);
+}
+
+.kf-clock {
+  position: relative;
+  width: 420px;
+  height: 420px;
+  margin-bottom: 40px;
+}
+
+.kf-clock__svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.kf-clock__track {
+  fill: none;
+  stroke: #e8e4dc;
+  stroke-width: 4;
+}
+
+.kf-clock__progress {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.9s linear, stroke 0.4s ease;
+}
+
+.kf-clock__face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.kf-clock__time {
+font-family: 'DM Mono', monospace;
+  font-size: 96px; 
+  font-weight: 500;
+  color: #1a1a18;
+  letter-spacing: -4px;
+  line-height: 1;
+}
+
+.kf-clock__cycle {
+  font-size: 12px;
+  color: #b0aba4;
+  font-family: 'DM Mono', monospace;
+}
+
+.kf-timer-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 220px;
+}
+
+.kf-btn {
+  padding: 9px 18px;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.12s;
+  letter-spacing: 0.02em;
+}
+
+.kf-btn--start {
+  width: 100%;
+  padding: 13px;
+  background: #1a1a18;
+  color: #e8e4dc;
+  border-color: #1a1a18;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.kf-btn--start:hover { background: #2c2c2a; }
+
+.kf-btn--pause {
+  width: 100%;
+  padding: 13px;
+  background: transparent;
+  color: #1a1a18;
+  border-color: #c8c3bb;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.kf-btn--pause:hover { background: #f0ede7; }
+
+.kf-btn--stop {
+  width: 100%;
+  padding: 8px;
+  background: transparent;
+  color: #b0aba4;
+  border-color: transparent;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.kf-btn--stop:hover { color: #c0392b; border-color: #f0b3ae; background: #fdf1f0; }
+
+.kf-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #1a1a18;
+  color: #f0ede7;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  z-index: 1000;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  animation: kf-toast-in 0.2s ease;
+  max-width: 300px;
+  line-height: 1.4;
+}
+
+@keyframes kf-toast-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
